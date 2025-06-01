@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:BeritaIn/screens/full_image_screen.dart';
+import 'package:BeritaIn/screens/comment_screen.dart';
 import 'package:BeritaIn/favoriteservice.dart';
+import 'package:BeritaIn/commentservice.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -39,7 +41,9 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   bool _isFavorite = false;
   final FavoriteService _favoriteService = FavoriteService();
+  final CommentService _commentService = CommentService();
   late String _reportId;
+  int _commentCount = 0;
 
   @override
   void initState() {
@@ -48,6 +52,7 @@ class _DetailScreenState extends State<DetailScreen> {
     _reportId = widget.reportId ?? 
         '${widget.createdAt.millisecondsSinceEpoch}_${widget.category}_${widget.description.hashCode}';
     _checkFavoriteStatus();
+    _loadCommentCount();
   }
 
   Future<void> _checkFavoriteStatus() async {
@@ -60,6 +65,19 @@ class _DetailScreenState extends State<DetailScreen> {
       }
     } catch (e) {
       print('Error checking favorite status: $e');
+    }
+  }
+
+  Future<void> _loadCommentCount() async {
+    try {
+      final count = await _commentService.getCommentCount(_reportId);
+      if (mounted) {
+        setState(() {
+          _commentCount = count;
+        });
+      }
+    } catch (e) {
+      print('Error loading comment count: $e');
     }
   }
 
@@ -126,6 +144,23 @@ class _DetailScreenState extends State<DetailScreen> {
     }
   }
 
+  void _openCommentScreen() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CommentScreen(
+          reportId: _reportId,
+          reportTitle: widget.title ?? 'Detail Berita',
+        ),
+      ),
+    );
+    
+    // Refresh comment count setelah kembali dari comment screen
+    if (result == true) {
+      _loadCommentCount();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final createdAtFormatted = DateFormat(
@@ -134,12 +169,12 @@ class _DetailScreenState extends State<DetailScreen> {
     
     return Scaffold(
       appBar: AppBar(
-        title:  Text(
-    widget.title != null && widget.title!.isNotEmpty 
-        ? widget.title! 
-        : 'Detail Berita',
-    overflow: TextOverflow.ellipsis, // Untuk menangani judul yang panjang
-  ),
+        title: Text(
+          widget.title != null && widget.title!.isNotEmpty 
+              ? widget.title! 
+              : 'Detail Berita',
+          overflow: TextOverflow.ellipsis, // Untuk menangani judul yang panjang
+        ),
         backgroundColor: const Color(0xFF2E5266),
       ),
       body: SingleChildScrollView(
@@ -258,6 +293,60 @@ class _DetailScreenState extends State<DetailScreen> {
                   Text(
                     widget.description,
                     style: const TextStyle(fontSize: 16),
+                  ),
+                  const SizedBox(height: 24),
+                  // Section komentar
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[100],
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.grey[300]!),
+                    ),
+                    child: InkWell(
+                      onTap: _openCommentScreen,
+                      borderRadius: BorderRadius.circular(12),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.comment,
+                              color: Colors.blue,
+                              size: 24,
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Komentar',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    _commentCount > 0 
+                                        ? '$_commentCount komentar'
+                                        : 'Belum ada komentar',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.grey,
+                              size: 16,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
