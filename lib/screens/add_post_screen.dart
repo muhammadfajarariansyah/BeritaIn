@@ -475,6 +475,7 @@ Future<void> _submitPost() async {
             const SizedBox(height: 8),
             TextField(
               controller: _titleController,
+              style: TextStyle(color: Colors.black),
               decoration: InputDecoration(
                 hintText: 'Masukkan judul berita...',
                 filled: true,
@@ -533,6 +534,7 @@ Future<void> _submitPost() async {
             const SizedBox(height: 8),
             TextField(
               controller: _descriptionController,
+              style: TextStyle(color: Colors.black),
               maxLines: 6,
               decoration: InputDecoration(
                 hintText: 'Masukkan deskripsi berita...',

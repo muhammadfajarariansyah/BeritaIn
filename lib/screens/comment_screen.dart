@@ -302,6 +302,7 @@ class _CommentScreenState extends State<CommentScreen> {
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
+                          color: Colors.black,
                         ),
                       ),
                       Text(
@@ -319,7 +320,7 @@ class _CommentScreenState extends State<CommentScreen> {
             const SizedBox(height: 12),
             Text(
               comment.message,
-              style: const TextStyle(fontSize: 14),
+              style: const TextStyle(fontSize: 14, color: Colors.black),
             ),
           ],
         ),
