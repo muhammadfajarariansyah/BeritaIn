@@ -1,4 +1,4 @@
-name: BeritaIn
+name: beritain
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -40,7 +40,7 @@ dependencies:
   flutter_image_compress: ^2.4.0 #Layanan untuk kompresi gambar
   geolocator: ^14.0.0 #Layanan untuk mendapatkan lokasi
   cloud_firestore: ^5.6.6
-  intl: ^0.20.2 #Layanan untuk format tanggal
+  intl: ^0.19.0 #Layanan untuk format tanggal
   flutter_launcher_icons: ^0.14.3
   firebase_messaging: ^15.2.5 #Layanan untuk mengiriman notifikasi
   flutter_local_notifications: ^19.2.1 #Layanan untuk menampilkan notifikasi
@@ -48,6 +48,10 @@ dependencies:
   http: ^1.4.0 #Layanan untuk melakukan request ke server
   shimmer: ^3.0.0 #Layanan untuk efek loading
   adaptive_theme: ^3.7.0
+  shared_preferences: ^2.5.3
+  provider: ^6.1.5
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +85,7 @@ flutter:
     - assets/logoberita.png
     - assets/signin.png
     - assets/signup.png
+  generate: true
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

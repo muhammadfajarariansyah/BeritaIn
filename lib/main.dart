@@ -1,13 +1,16 @@
 import 'dart:convert';
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:BeritaIn/firebase_options.dart';
-import 'package:BeritaIn/screens/splash_screen.dart';
+import 'package:beritain/firebase_options.dart';
+import 'package:beritain/l10n/app_localizations.dart';
+import 'package:beritain/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:BeritaIn/screens/home_screen.dart';
+import 'package:beritain/screens/home_screen.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -141,7 +144,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   AdaptiveThemeMode? savedThemeMode;
   String status = "Memulai...";
-  String topic = "berita-fasum";
+  String topic = "berita-terikini";
 
   @override
   void initState() {
@@ -179,7 +182,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    
     return AdaptiveTheme(
+      
        light: ThemeData.light().copyWith(
         scaffoldBackgroundColor: const Color(0xFF87CEEB),
         colorScheme: ColorScheme.fromSwatch().copyWith(

@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:BeritaIn/screens/detail_screen.dart';
-import 'package:BeritaIn/favoriteservice.dart';
+import 'package:beritain/screens/detail_screen.dart';
+import 'package:beritain/favoriteservice.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

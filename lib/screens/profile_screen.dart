@@ -1,10 +1,11 @@
+import 'package:beritain/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:BeritaIn/screens/add_post_screen.dart';
-import 'package:BeritaIn/screens/home_screen.dart';
-import 'package:BeritaIn/screens/sign_in_screen.dart';
-import 'package:BeritaIn/screens/favorite_screen.dart';
+import 'package:beritain/screens/add_post_screen.dart';
+import 'package:beritain/screens/home_screen.dart';
+import 'package:beritain/screens/sign_in_screen.dart';
+import 'package:beritain/screens/favorite_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -82,31 +83,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final User? user = _auth.currentUser;
 
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Top section with edit button
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(
-                      Icons.edit,
-                      color: Colors.black54,
-                      size: 20,
-                    ),
-                  ),
-                ],
+  body: SafeArea(
+    child: Column(
+      children: [
+        // Top section with edit button and settings
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // Tombol edit di sebelah kiri
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Icon(
+                  Icons.edit,
+                  color: Colors.black54,
+                  size: 20,
+                ),
               ),
-            ),
+              // Tombol pengaturan di sebelah kanan
+              IconButton(
+                icon: const Icon(Icons.settings),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SettingsScreen()),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
 
             const Spacer(flex: 2),
 

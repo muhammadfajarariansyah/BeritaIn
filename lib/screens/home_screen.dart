@@ -4,11 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:intl/intl.dart';
-import 'package:BeritaIn/screens/add_post_screen.dart';
-import 'package:BeritaIn/screens/detail_screen.dart';
-import 'package:BeritaIn/screens/sign_in_screen.dart';
-import 'package:BeritaIn/screens/profile_screen.dart';
-import 'package:BeritaIn/screens/favorite_screen.dart';
+import 'package:beritain/screens/add_post_screen.dart';
+import 'package:beritain/screens/detail_screen.dart';
+import 'package:beritain/screens/sign_in_screen.dart';
+import 'package:beritain/screens/profile_screen.dart';
+import 'package:beritain/screens/favorite_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

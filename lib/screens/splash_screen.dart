@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:BeritaIn/screens/home_screen.dart';
-import 'package:BeritaIn/screens/sign_in_screen.dart';
+import 'package:beritain/screens/home_screen.dart';
+import 'package:beritain/screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

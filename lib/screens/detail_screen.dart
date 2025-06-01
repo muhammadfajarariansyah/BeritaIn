@@ -1,9 +1,10 @@
 import 'dart:convert';
-
-import 'package:BeritaIn/screens/full_image_screen.dart';
-import 'package:BeritaIn/screens/comment_screen.dart';
-import 'package:BeritaIn/favoriteservice.dart';
-import 'package:BeritaIn/commentservice.dart';
+import 'package:beritain/screens/full_image_screen.dart';
+import 'package:beritain/screens/comment_screen.dart';
+import 'package:beritain/favoriteservice.dart';
+import 'package:beritain/commentservice.dart';
+import 'package:beritain/screens/full_image_screen.dart';
+import 'package:beritain/favoriteservice.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
