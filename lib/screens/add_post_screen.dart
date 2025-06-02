@@ -244,7 +244,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
   }
 
   Future<void> sendNotificationToTopic(String body, String senderName) async {
-    final url = Uri.parse('https://https://fasum-clode.vercel.app/send-to-topic');
+    final url = Uri.parse('https://fasum-clode.vercel.app/send-to-topic');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
